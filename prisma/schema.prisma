@@ -1,0 +1,213 @@
+// Generated schema — modeled after beautyhqio conventions.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(ANALYST)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  ANALYST
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  actorName String?
+  action    String
+  entity    String
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+}
+
+model Cohort {
+  id        String   @id @default(cuid())
+  name String
+  program String
+  startDate DateTime?
+  endDate DateTime?
+  capacity Int
+  status String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  learners Learner[]
+  learningPaths LearningPath[]
+  modules Module[]
+  assignments Assignment[]
+  assessmentResults AssessmentResult[]
+  mentorReviews MentorReview[]
+  readinessScores ReadinessScore[]
+  credentials Credential[]
+  placementOutcomes PlacementOutcome[]
+  skillBenchmarks SkillBenchmark[]
+  coachingNotes CoachingNote[]
+}
+
+model Learner {
+  id        String   @id @default(cuid())
+  name String
+  email String
+  currentRole String
+  targetRole String
+  status String
+  enrolledAt DateTime?
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LearningPath {
+  id        String   @id @default(cuid())
+  title String
+  learnerRef String
+  targetRole String
+  status String
+  moduleCount Int
+  progressPct Float
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Module {
+  id        String   @id @default(cuid())
+  title String
+  skill String
+  sequenceOrder Int
+  format String
+  durationMinutes Int
+  status String
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Assignment {
+  id        String   @id @default(cuid())
+  title String
+  brief String
+  deliverable String
+  status String
+  dueDate DateTime?
+  moduleRef String
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AssessmentResult {
+  id        String   @id @default(cuid())
+  learnerRef String
+  moduleRef String
+  score Float
+  passScore Float
+  status String
+  takenAt DateTime?
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MentorReview {
+  id        String   @id @default(cuid())
+  mentor String
+  learnerRef String
+  submissionRef String
+  feedback String
+  status String
+  reviewedAt DateTime?
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ReadinessScore {
+  id        String   @id @default(cuid())
+  learnerRef String
+  targetRole String
+  score Float
+  evidence String
+  status String
+  computedAt DateTime?
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Credential {
+  id        String   @id @default(cuid())
+  learnerRef String
+  title String
+  issuer String
+  issuedAt DateTime?
+  verificationUrl String
+  status String
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PlacementOutcome {
+  id        String   @id @default(cuid())
+  learnerRef String
+  employer String
+  placedRole String
+  salary Float
+  status String
+  placedAt DateTime?
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SkillBenchmark {
+  id        String   @id @default(cuid())
+  skill String
+  level String
+  description String
+  standardRef String
+  status String
+  role String
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CoachingNote {
+  id        String   @id @default(cuid())
+  coach String
+  learnerRef String
+  topic String
+  note String
+  status String
+  loggedAt DateTime?
+  cohortId String?
+  cohort Cohort? @relation(fields: [cohortId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "id": "learning-plan",
+    "title": "Learning milestone schedule",
+    "description": "Schedule ordered modules against weekly capacity and attach explicit readiness checkpoints.",
+    "example": {
+      "hoursPerWeek": 5,
+      "modules": [
+        {
+          "title": "Foundations",
+          "hours": 10,
+          "checkpoint": "Complete reviewed assignment"
+        },
+        {
+          "title": "Practice",
+          "hours": 5,
+          "checkpoint": "Meet rubric threshold"
+        }
+      ]
+    }
+  },
+  {
+    "id": "weighted-score",
+    "title": "Rubric score aggregation",
+    "description": "Aggregate human rubric ratings with explicit maxima and weights. This is not a calibrated model score.",
+    "example": {
+      "ratings": [
+        {
+          "competency": "Communication",
+          "score": 3,
+          "maximum": 4,
+          "weight": 1
+        },
+        {
+          "competency": "Problem solving",
+          "score": 4,
+          "maximum": 4,
+          "weight": 1
+        }
+      ],
+      "passPercent": 75
+    }
+  },
+  {
+    "id": "vacancy-match",
+    "title": "Vacancy skill matching",
+    "description": "Rank vacancies by explicit normalized skill overlap and list training gaps.",
+    "example": {
+      "skills": [
+        "analysis",
+        "writing"
+      ],
+      "vacancies": [
+        {
+          "id": "role-1",
+          "requiredSkills": [
+            "analysis",
+            "sql"
+          ]
+        }
+      ]
+    }
+  }
+]

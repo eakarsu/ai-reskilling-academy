@@ -1,0 +1,98 @@
+{
+  "path-generate": [
+    {
+      "id": "example-1",
+      "label": "Finance analyst",
+      "values": {
+        "currentRole": "Accounts payable specialist",
+        "targetRole": "Finance operations analyst",
+        "existingSkills": "Spreadsheets, reconciliations, attention to detail",
+        "hoursPerWeek": "8"
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Customer success",
+      "values": {
+        "currentRole": "Support associate",
+        "targetRole": "Customer success specialist",
+        "existingSkills": "CRM, case triage, written communication",
+        "hoursPerWeek": "5"
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Operations analyst",
+      "values": {
+        "currentRole": "Warehouse coordinator",
+        "targetRole": "Operations analyst",
+        "existingSkills": "Inventory control, scheduling, process documentation",
+        "hoursPerWeek": "6"
+      }
+    }
+  ],
+  "assignment-build": [
+    {
+      "id": "example-1",
+      "label": "Data reconciliation",
+      "values": {
+        "module": "Spreadsheet quality checks",
+        "skill": "Reconcile two fictional invoice exports",
+        "learnerLevel": "Foundation",
+        "context": "Use synthetic invoices; submit discrepancies, formulas and a review checklist."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Customer response",
+      "values": {
+        "module": "AI-assisted communication",
+        "skill": "Draft and critique a response using supplied source notes",
+        "learnerLevel": "Intermediate",
+        "context": "Use a fictional support case; document edits and unresolved questions."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Process improvement",
+      "values": {
+        "module": "Operational analysis",
+        "skill": "Compare a current and proposed handoff process",
+        "learnerLevel": "Advanced",
+        "context": "Use fictional event timestamps; submit calculations, limitations and a recommendation."
+      }
+    }
+  ],
+  "readiness-brief": [
+    {
+      "id": "example-1",
+      "label": "Ready for review",
+      "values": {
+        "learnerRole": "Support associate",
+        "targetRole": "Customer success specialist",
+        "scores": "Independent human ratings: communication 3/4, analysis 3/4; all sources needed.",
+        "mentorFeedback": "Mentor reports consistent follow-up in two observed assignments."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Mixed evidence",
+      "values": {
+        "learnerRole": "Accounts payable specialist",
+        "targetRole": "Finance analyst",
+        "scores": "Independent human ratings: spreadsheet work 4/5, interpretation 2/5.",
+        "mentorFeedback": "Mentor requests another exception-analysis assignment before a decision."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Evidence incomplete",
+      "values": {
+        "learnerRole": "Warehouse coordinator",
+        "targetRole": "Operations analyst",
+        "scores": "One assignment rated 3/4; assessment and second review missing.",
+        "mentorFeedback": "Mentor observation not yet available; do not infer readiness."
+      }
+    }
+  ]
+}

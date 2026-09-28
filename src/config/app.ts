@@ -117,23 +117,23 @@ export const entities: Record<string, EntityConfig> = {
 export const workflows: WorkflowConfig[] = [
   {
     slug: "path-generate",
-    title: "Learning Path Generator",
+    title: "Draft: Learning Path Generator",
     description: "Generate a personalized learning path.",
     prompt: "You are a learning architect. Build a personalized learning path from the learner's current role to their target role: modules, sequence, durations, checkpoints.",
     fields: ["currentRole", "targetRole", "existingSkills", "hoursPerWeek"],
   },
   {
     slug: "assignment-build",
-    title: "Assignment Builder",
+    title: "Draft: Assignment Builder",
     description: "Create a practical AI assignment.",
     prompt: "You are an instructional designer. Produce a hands-on practical AI assignment for the module: brief, deliverable, rubric, estimated effort.",
     fields: ["module", "skill", "learnerLevel", "context"],
   },
   {
     slug: "readiness-brief",
-    title: "Readiness Assessment",
+    title: "Draft: Readiness Assessment",
     description: "Assess job-transition readiness.",
-    prompt: "You are a career-transition assessor. Score job-transition readiness from assessment results, assignment quality, and mentor feedback.",
+    prompt: "Summarize reviewed assessments, assignments, mentor feedback and rubric results. Identify missing evidence. Do not invent a transition-readiness probability.",
     fields: ["learnerRole", "targetRole", "scores", "mentorFeedback"],
   },
 ];

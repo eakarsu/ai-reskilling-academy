@@ -1,0 +1,542 @@
+{
+  "Cohort": {
+    "name": "Cohort",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "program",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "startDate",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "endDate",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "capacity",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      }
+    ]
+  },
+  "Learner": {
+    "name": "Learner",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "email",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "currentRole",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "targetRole",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "enrolledAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "LearningPath": {
+    "name": "LearningPath",
+    "fields": [
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "learnerRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "targetRole",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "moduleCount",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "progressPct",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "Module": {
+    "name": "Module",
+    "fields": [
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "skill",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "sequenceOrder",
+        "kind": "number",
+        "required": true,
+        "integer": true
+      },
+      {
+        "name": "format",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "durationMinutes",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "Assignment": {
+    "name": "Assignment",
+    "fields": [
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "brief",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "deliverable",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "dueDate",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "moduleRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "AssessmentResult": {
+    "name": "AssessmentResult",
+    "fields": [
+      {
+        "name": "learnerRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "moduleRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "score",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "passScore",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "takenAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "MentorReview": {
+    "name": "MentorReview",
+    "fields": [
+      {
+        "name": "mentor",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "learnerRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "submissionRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "feedback",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "reviewedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "ReadinessScore": {
+    "name": "ReadinessScore",
+    "fields": [
+      {
+        "name": "learnerRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "targetRole",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "score",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "evidence",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "computedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "Credential": {
+    "name": "Credential",
+    "fields": [
+      {
+        "name": "learnerRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "issuer",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "issuedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "verificationUrl",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "PlacementOutcome": {
+    "name": "PlacementOutcome",
+    "fields": [
+      {
+        "name": "learnerRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "employer",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "placedRole",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "salary",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "placedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "SkillBenchmark": {
+    "name": "SkillBenchmark",
+    "fields": [
+      {
+        "name": "skill",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "level",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "description",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "standardRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "role",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  },
+  "CoachingNote": {
+    "name": "CoachingNote",
+    "fields": [
+      {
+        "name": "coach",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "learnerRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "topic",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "note",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "loggedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "cohortId",
+        "kind": "string",
+        "required": false,
+        "relation": "Cohort"
+      }
+    ],
+    "parent": {
+      "field": "cohortId",
+      "entity": "Cohort"
+    }
+  }
+}
